@@ -93,28 +93,31 @@ posts.forEach((postSingolo) => {
     contenitorePost.append(contenitoreLikes);
     const contenitoreCta = document.createElement("div");
     contenitoreCta.classList.add("likes__cta");
-    contenitoreCta.innerHTML = `<a class="like-button  js-like-button" href="#" data-postid="${postSingolo.id}">
+    contenitoreCta.innerHTML = `<a class="like-button js-like-button" href="#" data-postid="${postSingolo.id}">
     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
     <span class="like-button__label">Mi Piace</span> </a> `
     contenitoreLikes.append(contenitoreCta) ;
     const containerContoLike = document.createElement("div");
     containerContoLike.classList.add("likes__counter") ;
-    containerContoLike.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${postSingolo.likes}</b> persone` ;
+    containerContoLike.innerHTML = `Piace a <b id="like-counter-${postSingolo.id}" class="js-likes-counter">${postSingolo.likes}</b> persone` ;
     contenitoreLikes.append(containerContoLike) ;
 
 }) ;
 
 
+/*
+    seleziono tutti i tag a che hanno classe like-button
+    scorro tutti i tag presi dal selettore
+    aggiungi su ogni tag un listener per il click
+    nella funzione hai accesso al tag a specifico => mi ricavo data-postid per selezionare il tag b dove cambiare il contenuto
+     cambi classe per colorarlo e aumenti numero di like
+*/
 
 
+const pulsanteLike = document.getElementsByClassName("like-button") ;
+    for (let i = 0; i < pulsanteLike.length; i++) {
+        pulsanteLike[i].addEventListener("click", function()  {
+            this.classList.add("like-button--liked");
+        })
+    }
 
-const {likes} = posts;
-console.log(likes);
-
-document.getElementById("like-counter-1").addEventListener("click", contatore(likes) ) ;
-
-function contatore(numeroLike) {
-    const contoLike = [] ;
-    contoLike = numeroLike + 1 ;
-     return contoLike
-} console.log(contoLike);
