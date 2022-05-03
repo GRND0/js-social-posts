@@ -103,3 +103,18 @@ posts.forEach((postSingolo) => {
     contenitoreLikes.append(containerContoLike) ;
 
 }) ;
+
+
+
+
+
+const {likes} = posts;
+console.log(likes);
+
+document.getElementById("like-counter-1").addEventListener("click", contatore(likes) ) ;
+
+function contatore(numeroLike) {
+    const contoLike = [] ;
+    contoLike = numeroLike + 1 ;
+     return contoLike
+} console.log(contoLike);
