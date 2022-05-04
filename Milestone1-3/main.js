@@ -63,40 +63,50 @@ posts.forEach((postSingolo) => {
     const contenitorePost = document.createElement("div");
     contenitorePost.classList.add("post");
     contenitore.append(contenitorePost);
+
     const contenitoreHeader = document.createElement("div");
     contenitoreHeader.classList.add("post__header");
     contenitorePost.append(contenitoreHeader);
+
     const contenitoreMeta = document.createElement("div");
     contenitoreMeta.classList.add("post-meta");
     contenitorePost.append(contenitoreMeta);
+
     const contenitoreIcone = document.createElement("div")
     contenitoreIcone.classList.add("post-meta__icon")
     contenitoreIcone.innerHTML = `<img class="profile-pic" src="${postSingolo.author.image}" alt="${postSingolo.author.name}"></img>`;
     contenitoreMeta.append(contenitoreIcone);
+
     const contenitoreMetaData = document.createElement("div");
     contenitoreMetaData.classList.add("post-meta__data");
     contenitoreMetaData.innerHTML = `<div class="post-meta__author"> ${postSingolo.author.name} </div> <div class="post-meta__time">${postSingolo.created}</div> `
     contenitoreMeta.append(contenitoreMetaData);
+
     const contenitoreTesto = document.createElement("div");
     contenitoreTesto.classList.add("post__text");
     contenitoreTesto.innerHTML = `${postSingolo.content}`;
     contenitorePost.append(contenitoreTesto);
+
     const contenitoreImmagine = document.createElement("div");
     contenitoreImmagine.classList.add("post__image");
     contenitoreImmagine.innerHTML = `<img src="${postSingolo.media}" alt="">`;
     contenitorePost.append(contenitoreImmagine);
+
     const contenitoreFooter = document.createElement("div");
     contenitoreFooter.classList.add("post__footer");
     contenitorePost.append(contenitoreFooter);
+
     const contenitoreLikes = document.createElement("div");
     contenitoreLikes.classList.add("likes","js-likes");
     contenitorePost.append(contenitoreLikes);
+
     const contenitoreCta = document.createElement("div");
     contenitoreCta.classList.add("likes__cta");
     contenitoreCta.innerHTML = `<a class="like-button js-like-button" href="#" data-postid="${postSingolo.id}">
     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
     <span class="like-button__label">Mi Piace</span> </a> `
     contenitoreLikes.append(contenitoreCta) ;
+
     const containerContoLike = document.createElement("div");
     containerContoLike.classList.add("likes__counter") ;
     containerContoLike.innerHTML = `Piace a <b id="like-counter-${postSingolo.id}" class="js-likes-counter">${postSingolo.likes}</b> persone` ;
@@ -118,6 +128,15 @@ const pulsanteLike = document.getElementsByClassName("like-button") ;
     for (let i = 0; i < pulsanteLike.length; i++) {
         pulsanteLike[i].addEventListener("click", function()  {
             this.classList.add("like-button--liked");
+            const postCliccato = posts[i]; 
+            const idPostCliccato = postCliccato.id;
+            const contatoreLike = document.getElementById(`like.counter-${idPostCliccato}`);
+            let numeroLike = parseInt(contatoreLike.textContent) ;
+            numeroLike = numeroLike + 1 ;
+            contatoreLike.innerHTML = numeroLike ;
+
+            postCliccato.push(idPostCliccato); 
+
         })
     }
 
